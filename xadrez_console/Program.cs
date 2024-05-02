@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using tabuleiro;
+﻿using board;
 
 namespace xadrez_console
 {
@@ -11,12 +6,8 @@ namespace xadrez_console
     {
         static void Main(string[] args)
         {
+            Board tab = new Board(4, 4);
 
-            Position p;
-
-            p = new Position(3, 4);
-
-            Console.WriteLine(p);
         }
     }
 }
