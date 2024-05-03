@@ -1,5 +1,6 @@
 ﻿using System;
 using board;
+
 namespace xadrez_console
 {
     internal class Screen

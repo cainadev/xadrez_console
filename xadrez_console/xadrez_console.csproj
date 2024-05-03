@@ -50,6 +50,8 @@
     <Compile Include="board\Piece.cs" />
     <Compile Include="board\Position.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="xadrez\King.cs" />
+    <Compile Include="xadrez\Rook.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
