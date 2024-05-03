@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Net.NetworkInformation;
+using System.Net.Http.Headers;
 using board;
+using xadrez;
 
 namespace xadrez_console
 {
@@ -29,7 +30,15 @@ namespace xadrez_console
                 Console.WriteLine();
 
             }
-            Console.WriteLine("  a b c d e f g h");
+            Console.WriteLine("  A B C D E F G H");
+        }
+
+        public static PositionXadrez ReadPositionXadrez()
+        {
+            string s = Console.ReadLine();
+            char column = s[0];
+            int line = int.Parse(s[1] + "");
+            return new PositionXadrez(column, line);
         }
 
         public static void PrintPie(Piece piece )
@@ -46,5 +55,7 @@ namespace xadrez_console
                 Console.ForegroundColor = aux;
             }
         }
+
+
     }
 }

@@ -10,14 +10,22 @@ namespace xadrez_console
         {
             try
             {
-                Board tab = new Board(8, 8);
+                MatchXadrez match = new MatchXadrez();
 
-                tab.InsertPie(new Rook(tab, Color.Black), new Position(0, 0));
-                tab.InsertPie(new King(tab, Color.Black), new Position(0, 2));
-                tab.InsertPie(new Rook(tab, Color.White), new Position(1, 2));
-                tab.InsertPie(new King(tab, Color.White), new Position(2, 4));
+                while (!match.Finished)
+                {
+                    Console.Clear();
+                    Screen.PrintBoard(match.Tab);
 
-                Screen.PrintBoard(tab);
+                    Console.WriteLine();
+                    Console.Write("Origem: ");
+                    Position origin = Screen.ReadPositionXadrez().ToPosition();
+                    Console.Write("Destino: ");
+                    Position target = Screen.ReadPositionXadrez().ToPosition();
+
+                    match.ExecMove(origin, target);
+                }
+
             }
             catch (Exception ex)
             {

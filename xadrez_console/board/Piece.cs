@@ -14,5 +14,10 @@
             Tab = tab;
             NumberMoves = 0;
         }
+
+        public void AddMoves()
+        {
+            NumberMoves++;
+        }
     }
 }
