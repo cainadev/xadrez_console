@@ -8,21 +8,12 @@ namespace xadrez_console
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Board tab = new Board(8, 8);
+            PositionXadrez pos = new PositionXadrez('c', 7);
 
-                tab.InsertPie(new Rook(tab, Color.Black), new Position(0, 0));
-                tab.InsertPie(new King(tab, Color.Black), new Position(0, 2));
-                tab.InsertPie(new Rook(tab, Color.Black), new Position(1, 2));
-                tab.InsertPie(new King(tab, Color.Black), new Position(2, 4));
 
-                Screen.PrintBoard(tab);
-            }
-            catch (BoardException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            Console.WriteLine(pos);
+
+            Console.WriteLine(pos.ToPosition());
         }
     }
 }

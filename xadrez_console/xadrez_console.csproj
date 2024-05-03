@@ -52,6 +52,7 @@
     <Compile Include="board\Position.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="xadrez\King.cs" />
+    <Compile Include="xadrez\PositionXadrez.cs" />
     <Compile Include="xadrez\Rook.cs" />
   </ItemGroup>
   <ItemGroup>
