@@ -5,10 +5,16 @@
         public int Line { get; set; }
         public int Column { get; set; }
 
-        public Position(int linha, int coluna)
+        public Position(int line, int column)
         {
-            Line = linha;
-            Column = coluna;
+            Line = line;
+            Column = column;
+        }
+
+        public void DefineValue(int line, int column)
+        {
+            Line = line;
+            Column = column;
         }
 
         public override string ToString()

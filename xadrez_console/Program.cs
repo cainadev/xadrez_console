@@ -20,6 +20,12 @@ namespace xadrez_console
                     Console.WriteLine();
                     Console.Write("Origem: ");
                     Position origin = Screen.ReadPositionXadrez().ToPosition();
+
+                    bool[,] PossiblePosition = match.Tab.Pie(origin).PossibleMoves();
+
+                    Console.Clear();
+                    Screen.PrintBoard(match.Tab, PossiblePosition);
+
                     Console.Write("Destino: ");
                     Position target = Screen.ReadPositionXadrez().ToPosition();
 
