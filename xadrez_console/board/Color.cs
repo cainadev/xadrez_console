@@ -2,11 +2,7 @@
 {
     enum Color
     {
-        Black,
-        White,
-        Red,
-        Blue,
-        Yellow,
-        Green
+        Preto,
+        Branco
     }
 }

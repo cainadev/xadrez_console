@@ -20,6 +20,27 @@
             NumberMoves++;
         }
 
+        public bool TherePossibleMoves()
+        {
+            bool[,] mat = PossibleMoves();
+            for (int i = 0; i< Tab.NumberLines; i++)
+            {
+                for (int j = 0; j < Tab.NumberColumns; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool CanMoveFor(Position pos)
+        {
+            return PossibleMoves()[pos.Line, pos.Column];
+        }
+
         public abstract bool[,] PossibleMoves();
     }
 }

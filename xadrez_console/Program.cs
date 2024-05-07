@@ -14,22 +14,36 @@ namespace xadrez_console
 
                 while (!match.Finished)
                 {
-                    Console.Clear();
-                    Screen.PrintBoard(match.Tab);
+                    try
+                    {
+                        Console.Clear();
+                        Screen.PrintBoard(match.Tab);
+                        Console.WriteLine();
+                        Console.WriteLine("Turno: " + match.Shift);
+                        Console.WriteLine("Aguardando jogador: " + match.CurrentPlayer);
 
-                    Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Position origin = Screen.ReadPositionXadrez().ToPosition();
+                        Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Position origin = Screen.ReadPositionXadrez().ToPosition();
+                        match.ValidatePositionOrigin(origin);
 
-                    bool[,] PossiblePosition = match.Tab.Pie(origin).PossibleMoves();
+                        bool[,] PossiblePosition = match.Tab.Pie(origin).PossibleMoves();
 
-                    Console.Clear();
-                    Screen.PrintBoard(match.Tab, PossiblePosition);
+                        Console.Clear();
+                        Screen.PrintBoard(match.Tab, PossiblePosition);
 
-                    Console.Write("Destino: ");
-                    Position target = Screen.ReadPositionXadrez().ToPosition();
+                        Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Position target = Screen.ReadPositionXadrez().ToPosition();
+                        match.ValidadePositionTarget(origin, target);
 
-                    match.ExecMove(origin, target);
+                        match.MakeGamble(origin, target);
+                    }
+                    catch (BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
                 }
 
             }
