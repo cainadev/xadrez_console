@@ -1,11 +1,47 @@
 ﻿using System;
 using board;
 using xadrez;
+using System.Collections.Generic;
 
 namespace xadrez_console
 {
     internal class Screen
     {
+        public static void PrintMatch(MatchXadrez match)
+        {
+            PrintBoard(match.Tab);
+            Console.WriteLine();
+            PrintCapturedPies(match);
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + match.Shift);
+            Console.WriteLine("Aguardando jogador: " + match.CurrentPlayer);
+        }
+
+        public static void PrintCapturedPies(MatchXadrez match)
+        {
+            Console.WriteLine("Peças Capturadas: ");
+            Console.Write("Brancas: ");
+            PrintAll(match.CapturedPies(Color.Branco));
+            Console.WriteLine();
+
+            Console.Write("Pretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintAll(match.CapturedPies(Color.Preto));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        public static void PrintAll(HashSet<Piece> pies)
+        {
+            Console.Write("[");
+            foreach (Piece x in pies)
+            {
+                Console.Write(x + " ");
+            }
+            Console.Write("]");
+        }
+
         public static void PrintBoard(Board tab)
         {
             for (int i = 0; i < tab.NumberLines; i++)
