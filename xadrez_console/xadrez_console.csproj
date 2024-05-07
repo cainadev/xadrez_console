@@ -51,9 +51,13 @@
     <Compile Include="board\Piece.cs" />
     <Compile Include="board\Position.cs" />
     <Compile Include="Screen.cs" />
+    <Compile Include="xadrez\Bishop.cs" />
+    <Compile Include="xadrez\Horse.cs" />
     <Compile Include="xadrez\King.cs" />
     <Compile Include="xadrez\MatchXadrez.cs" />
+    <Compile Include="xadrez\Pawn.cs" />
     <Compile Include="xadrez\PositionXadrez.cs" />
+    <Compile Include="xadrez\Queen.cs" />
     <Compile Include="xadrez\Rook.cs" />
   </ItemGroup>
   <ItemGroup>

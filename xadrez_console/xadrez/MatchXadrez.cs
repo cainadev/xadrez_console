@@ -224,19 +224,40 @@ namespace xadrez
 
         private void AddPies()
         {
-            InsertNewPie('c', 1, new Rook(Tab, Color.Branco));
-            InsertNewPie('c', 2, new Rook(Tab, Color.Branco));
-            InsertNewPie('d', 2, new Rook(Tab, Color.Branco));
-            InsertNewPie('e', 2, new Rook(Tab, Color.Branco));
-            InsertNewPie('e', 1, new Rook(Tab, Color.Branco));
-            InsertNewPie('d', 1, new King(Tab, Color.Branco));
+            InsertNewPie('a', 1, new Rook(Tab, Color.Branco));
+            InsertNewPie('b', 1, new Horse(Tab, Color.Branco));
+            InsertNewPie('c', 1, new Bishop(Tab, Color.Branco));
+            InsertNewPie('d', 1, new Queen(Tab, Color.Branco));
+            InsertNewPie('e', 1, new King(Tab, Color.Branco));
+            InsertNewPie('f', 1, new Bishop(Tab, Color.Branco));
+            InsertNewPie('g', 1, new Horse(Tab, Color.Branco));
+            InsertNewPie('h', 1, new Rook(Tab, Color.Branco));
+            InsertNewPie('a', 2, new Pawn(Tab, Color.Branco));
+            InsertNewPie('b', 2, new Pawn(Tab, Color.Branco));
+            InsertNewPie('c', 2, new Pawn(Tab, Color.Branco));
+            InsertNewPie('d', 2, new Pawn(Tab, Color.Branco));
+            InsertNewPie('e', 2, new Pawn(Tab, Color.Branco));
+            InsertNewPie('f', 2, new Pawn(Tab, Color.Branco));
+            InsertNewPie('g', 2, new Pawn(Tab, Color.Branco));
+            InsertNewPie('h', 2, new Pawn(Tab, Color.Branco));
 
-            InsertNewPie('c', 7, new Rook(Tab, Color.Preto));
-            InsertNewPie('c', 8, new Rook(Tab, Color.Preto));
-            InsertNewPie('d', 7, new Rook(Tab, Color.Preto));
-            InsertNewPie('e', 7, new Rook(Tab, Color.Preto));
-            InsertNewPie('e', 8, new Rook(Tab, Color.Preto));
-            InsertNewPie('d', 8, new King(Tab, Color.Preto));
+            InsertNewPie('a', 8, new Rook(Tab, Color.Preto));
+            InsertNewPie('b', 8, new Horse(Tab, Color.Preto));
+            InsertNewPie('c', 8, new Bishop(Tab, Color.Preto));
+            InsertNewPie('d', 8, new Queen(Tab, Color.Preto));
+            InsertNewPie('e', 8, new King(Tab, Color.Preto));
+            InsertNewPie('f', 8, new Bishop(Tab, Color.Preto));
+            InsertNewPie('g', 8, new Horse(Tab, Color.Preto));
+            InsertNewPie('h', 8, new Rook(Tab, Color.Preto));
+            InsertNewPie('a', 7, new Pawn(Tab, Color.Preto));
+            InsertNewPie('b', 7, new Pawn(Tab, Color.Preto));
+            InsertNewPie('c', 7, new Pawn(Tab, Color.Preto));
+            InsertNewPie('d', 7, new Pawn(Tab, Color.Preto));
+            InsertNewPie('e', 7, new Pawn(Tab, Color.Preto));
+            InsertNewPie('f', 7, new Pawn(Tab, Color.Preto));
+            InsertNewPie('g', 7, new Pawn(Tab, Color.Preto));
+            InsertNewPie('h', 7, new Pawn(Tab, Color.Preto));
+
         }
     }
 }
