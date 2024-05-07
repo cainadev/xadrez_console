@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using board;
 
 namespace xadrez
@@ -12,6 +13,7 @@ namespace xadrez
         public bool Finished { get; private set; }
         private HashSet<Piece> Pieces;
         private HashSet<Piece> Captured;
+        public bool Check;
 
         public MatchXadrez()
         {
@@ -19,12 +21,13 @@ namespace xadrez
             Shift = 1;
             CurrentPlayer = Color.Branco;
             Finished = false;
+            Check = false;
             Pieces = new HashSet<Piece>();
             Captured = new HashSet<Piece>();
             AddPies();
         }
 
-        public void ExecMove(Position origin, Position target)
+        public Piece ExecMove(Position origin, Position target)
         {
             Piece p = Tab.RemovePie(origin);
             p.AddMoves();
@@ -34,11 +37,40 @@ namespace xadrez
             {
                 Captured.Add(capturedPie);
             }
+            return capturedPie;
+        }
+
+        public void UntilMove(Position origin, Position target, Piece capturedPie)
+        {
+            Piece p = Tab.RemovePie(target);
+            p.RemoveMoves();
+            if (capturedPie != null)
+            {
+                Tab.InsertPie(capturedPie, target);
+                Captured.Remove(capturedPie);
+            }
+            Tab.InsertPie(p, origin);
         }
 
         public void MakeGamble(Position origin, Position target)
         {
-            ExecMove(origin, target);
+            Piece capturedPie = ExecMove(origin, target);
+
+            if (IsCheck(CurrentPlayer))
+            {
+                UntilMove(origin, target, capturedPie);
+                throw new BoardException("Você não pode se colocar em xeque!");
+            }
+
+            if (IsCheck(Rival(CurrentPlayer)))
+            {
+                Check = true;
+            }
+            else
+            {
+                Check = false;
+            }
+
             Shift++;
             ChangePlayer();
         }
@@ -104,6 +136,49 @@ namespace xadrez
             }
             aux.ExceptWith(CapturedPies(color));
             return aux;
+        }
+
+        private Color Rival(Color color)
+        {
+            if (color == Color.Branco)
+            {
+                return Color.Preto; 
+            }
+            else
+            {
+                return Color.Branco;
+            }
+        }
+
+        private Piece King(Color color)
+        {
+            foreach (Piece x in PieInGame(color))
+            {
+                if (x is King)
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
+
+        public bool IsCheck(Color color)
+        {
+            Piece R = King(color);
+            if (R == null)
+            {
+                throw new BoardException("Não tem rei da cor " + color + " no tabuleiro!");
+            }
+
+            foreach (Piece x in PieInGame(Rival(color)))
+            {
+                bool[,] mat = x.PossibleMoves();
+                if (mat[R.Position.Line, R.Position.Column])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void InsertNewPie(char column, int line, Piece pie)

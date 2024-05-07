@@ -20,6 +20,11 @@
             NumberMoves++;
         }
 
+        public void RemoveMoves()
+        {
+            NumberMoves--;
+        }
+
         public bool TherePossibleMoves()
         {
             bool[,] mat = PossibleMoves();
