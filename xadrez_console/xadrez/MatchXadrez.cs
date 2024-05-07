@@ -71,8 +71,15 @@ namespace xadrez
                 Check = false;
             }
 
-            Shift++;
-            ChangePlayer();
+            if (TestCheck(Rival(CurrentPlayer)))
+            {
+                Finished = true;
+            }
+            else
+            {
+                Shift++;
+                ChangePlayer();
+            }
         }
 
         public void ValidatePositionOrigin(Position pos)
@@ -179,6 +186,34 @@ namespace xadrez
                 }
             }
             return false;
+        }
+
+        public bool TestCheck(Color color)
+        {
+            if (!IsCheck(color))
+            {
+                return false;
+            }
+            foreach (Piece x in PieInGame(color))
+            {
+                bool[,] mat = x.PossibleMoves();
+                for (int i = 0; i < Tab.NumberLines; i++)
+                {
+                    for (int j = 0; j < Tab.NumberColumns; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Position origin = x.Position;
+                            Position target = new Position(i, j);
+                            Piece capturedPie = ExecMove(origin, target);
+                            bool Testcheck = IsCheck(color);
+                            UntilMove(origin, target, capturedPie);
+                            if (!Testcheck) { return false; }
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public void InsertNewPie(char column, int line, Piece pie)
